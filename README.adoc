@@ -101,11 +101,31 @@ Then, click `Generate Project`, which downloads the starter project as `inventor
 
 Next, extract the `inventory.zip` file to the `guide-liberty-deepdive-gradle/start/inventory` directory.
 
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
+
+[.tab_content.windows_section]
+--
+Use Powershell for the following commands:
+[role='command']
+```
+cd start
+Expand-Archive -LiteralPath .\inventory.zip -DestinationPath inventory
+```
+--
+
+[.tab_content.mac_section.linux_section]
+--
 [role='command']
 ```
 cd start
 unzip inventory.zip -d inventory
 ```
+--
 endif::[]
 
 ifdef::cloud-hosted[]
