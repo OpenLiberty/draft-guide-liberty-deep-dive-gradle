@@ -137,8 +137,6 @@ echo ===== Test module-jwt, health, metrics =====
 
 ./scripts/startSystem.sh
 
-:retry
-
 ./scripts/finishMetrics.sh
 cd start/inventory
 
