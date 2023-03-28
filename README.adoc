@@ -182,10 +182,28 @@ endif::[]
 
 Build and deploy the `inventory` microservice to Liberty by running the Gradle `libertyRun` task:
 
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+gradlew libertyRun
+```
+--
+
+[.tab_content.mac_section.linux_section]
+--
 [role='command']
 ```
 ./gradlew libertyRun
 ```
+--
 
 The `gradlew` command initiates a Gradle build, during which the target directory is created to store all build-related files.
 
@@ -202,22 +220,58 @@ While the server starts up, various messages display in your command-line sessio
 
 When you need to stop the server, press `CTRL+C` in the command-line session where you ran the server, or run the `libertyStop` goal from the `start/inventory` directory in another command-line session:
 
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+gradlew libertyStop
+```
+--
+
+[.tab_content.mac_section.linux_section]
+--
 [role='command']
 ```
 ./gradlew libertyStop
 ```
+--
 
 
 === Starting and stopping the Liberty server in the background
 
 Although you can start and stop the server in the foreground by using the Gradle `libertyRun` task, you can also start and stop the server in the background with the Gradle `libertyStart` and `libertyStop` goals:
 
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
+
+[.tab_content.windows_section]
+--
 [role='command']
-----
+```
+gradlew libertyStart
+gradlew libertyStop
+```
+--
+
+[.tab_content.mac_section.linux_section]
+--
+[role='command']
+```
 ./gradlew libertyStart
 ./gradlew libertyStop
-----
-
+```
+--
 
 === Updating the server configuration without restarting the server
 
@@ -225,10 +279,28 @@ The Liberty Gradle plug-in includes a `dev` task that listens for any changes in
 
 If the Liberty server is running, stop it and restart it in dev mode by running the `libertyDev` goal in the `start/inventory` directory:
 
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+gradlew libertyDev
+```
+--
+
+[.tab_content.mac_section.linux_section]
+--
 [role='command']
 ```
 ./gradlew libertyDev
 ```
+--
 
 After you see the following message, your application server in dev mode is ready:
 
@@ -1034,10 +1106,28 @@ include::finish/module-jwt/build.gradle[]
 Configure the client https port by setting the [hotspot=https file=2]`liberty.server.var.'client.https.port'` to `9444`.
 
 In your dev mode console for the `inventory` microservice, press `CTRL+C` to stop the server. Then, restart the dev mode of the `inventory` microservice.
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+gradlew libertyDev
+```
+--
+
+[.tab_content.mac_section.linux_section]
+--
 [role='command']
 ```
 ./gradlew libertyDev
 ```
+--
 
 After you see the following message, your application server in dev mode is ready again:
 
@@ -1052,11 +1142,30 @@ After you see the following message, your application server in dev mode is read
 Open another command-line session and run the `system` microservice from the `finish` directory.
 
 ifndef::cloud-hosted[]
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
+
+[.tab_content.windows_section]
+--
 [role='command']
-----
+```
+cd finish\system
+gradlew libertyRun
+```
+--
+
+[.tab_content.mac_section.linux_section]
+--
+[role='command']
+```
 cd finish/system
 ./gradlew libertyRun
-----
+```
+--
 endif::[]
 
 ifdef::cloud-hosted[]
@@ -1463,10 +1572,29 @@ cd /home/project/guide-liberty-deep-dive-gradle/start/inventory
 ```
 endif::[]
 
+
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+gradlew war
+```
+--
+
+[.tab_content.mac_section.linux_section]
+--
 [role='command']
 ```
 ./gradlew war
 ```
+--
 
 Build your container image with the following commands:
 
