@@ -782,7 +782,7 @@ Before making requests, you must add a system to the inventory. Try adding a sys
 
 [role='command']
 ----
-curl -X POST 'http://localhost:9080/inventory/api/systems?hostname=localhost&osName=mac&javaVersion=11&heapSize=1'
+curl -X POST "http://localhost:9080/inventory/api/systems?hostname=localhost&osName=mac&javaVersion=11&heapSize=1"
 ----
 
 You can expect the following response:
@@ -797,7 +797,7 @@ This command calls the `/systems` endpoint and adds a system `localhost` to the 
 ifndef::cloud-hosted[]
 [role='command']
 ----
-curl -s 'http://localhost:9080/inventory/api/systems'
+curl -s "http://localhost:9080/inventory/api/systems"
 ----
 endif::[]
 
@@ -818,7 +818,7 @@ Now try calling your secure PUT endpoint to update the system that you just adde
 
 [role='command']
 ----
-curl -k --user alice:alicepwd -X PUT 'http://localhost:9080/inventory/api/systems/localhost?heapSize=2097152&javaVersion=11&osName=linux'
+curl -k --user alice:alicepwd -X PUT "http://localhost:9080/inventory/api/systems/localhost?heapSize=2097152&javaVersion=11&osName=linux"
 ----
 
 As this endpoint is accessible to the groups `user` and `admin`, you must log in with `user` credentials to update the system.
@@ -838,7 +838,7 @@ You can check that your application is secured against these requests with the f
 
 [role='command']
 ----
-curl -k --user alice:alicepwd -X DELETE 'https://localhost:9443/inventory/api/systems/localhost'
+curl -k --user alice:alicepwd -X DELETE "https://localhost:9443/inventory/api/systems/localhost"
 ----
 
 As `alice` is part of the `user` group, this request cannot work. In your dev mode console, you can expect the following output:
@@ -852,7 +852,7 @@ Now attempt to call this endpoint with an authenticated `admin` user that can wo
 
 [role='command']
 ----
-curl -k --user bob:bobpwd -X DELETE 'https://localhost:9443/inventory/api/systems/localhost'
+curl -k --user bob:bobpwd -X DELETE "https://localhost:9443/inventory/api/systems/localhost"
 ----
 
 You can expect to see the following response:
@@ -866,7 +866,7 @@ This response means that your endpoint is secure. Validate that it works correct
 
 [role='command']
 ----
-curl 'http://localhost:9080/inventory/api/systems'
+curl "http://localhost:9080/inventory/api/systems"
 ----
 
 You can expect to see the following output:
@@ -1143,7 +1143,7 @@ As this endpoint is restricted to `admin`, you can use the login credentials for
 
 [role='command']
 ----
-curl -k --user bob:bobpwd -X POST 'https://localhost:9443/inventory/api/systems/client/localhost'
+curl -k --user bob:bobpwd -X POST "https://localhost:9443/inventory/api/systems/client/localhost"
 ----
 
 You can expect the following output:
@@ -1158,7 +1158,7 @@ You can verify that this endpoint works as expected by running the following com
 ifndef::cloud-hosted[]
 [role='command']
 ----
-curl 'http://localhost:9080/inventory/api/systems'
+curl "http://localhost:9080/inventory/api/systems"
 ----
 endif::[]
 
