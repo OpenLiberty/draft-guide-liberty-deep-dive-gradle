@@ -1482,7 +1482,7 @@ Make sure to start your podman daemon before you proceed.
 
 [role="code_command hotspot file=0",subs="quotes"]
 ----
-#Replace the `Containerfile` in the `start/inventory` directory.#
+#Create the `Containerfile` in the `start/inventory` directory.#
 `Containerfile`
 ----
 
