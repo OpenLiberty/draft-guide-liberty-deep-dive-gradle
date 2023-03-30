@@ -11,19 +11,25 @@ done
 
 echo "Testing daily build image"
 
-sed -i "\#<artifactId>liberty-maven-plugin</artifactId>#a<configuration><install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER</runtimeUrl></install></configuration>" system/pom.xml module-getting-started/pom.xml module-openapi/pom.xml module-config/pom.xml
-cat system/pom.xml
-cat module-getting-started/pom.xml
-cat module-openapi/pom.xml
-cat module-config/pom.xml
+echo "apply plugin: 'liberty'\nliberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}" >> module-jwt/build.gradle
+cat module-jwt/build.gradle
 
-sed -i "\#<configuration>#a<install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER</runtimeUrl></install>" module-persisting-data/pom.xml module-securing/pom.xml module-jwt/pom.xml module-testcontainers/pom.xml
-cat module-persisting-data/pom.xml
-cat module-securing/pom.xml
-cat module-jwt/pom.xml
-cat module-testcontainers/pom.xml
+echo "apply plugin: 'liberty'\nliberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}" >> module-getting-started/build.gradle
+cat module-getting-started/build.gradle
 
-sed -i "s;FROM icr.io/appcafe/open-liberty:full-java11-openj9-ubi;FROM $DOCKER_USERNAME/olguides:$BUILD;g" module-kubernetes/Dockerfile
-cat module-kubernetes/Dockerfile
+echo "apply plugin: 'liberty'\nliberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}" >> system/build.gradle
+cat system/build.gradle
 
-sudo -u runner ../scripts/testApp.sh
+echo "apply plugin: 'liberty'\nliberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}" >> module-config/build.gradle
+cat module-config/build.gradle
+
+echo "apply plugin: 'liberty'\nliberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}" >> module-securing/build.gradle
+cat module-securing/build.gradle
+
+echo "apply plugin: 'liberty'\nliberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}" >> module-openapi/build.gradle
+cat module-openapi/build.gradle
+
+sed -i "s;FROM icr.io/appcafe/open-liberty:full-java11-openj9-ubi;FROM $DOCKER_USERNAME/olguides:$BUILD;g" module-kubernetes/Containerfile
+cat module-kubernetes/Containerfile
+
+../scripts/testApp.sh
