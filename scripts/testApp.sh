@@ -87,8 +87,8 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
-sleep 20
-
+sleep 10
+kill `pidof java`
 ps -ef | grep java
 
 cd ../..
@@ -134,8 +134,8 @@ curl -X DELETE http://localhost:9080/inventory/api/systems/localhost | grep remo
 curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep "5555" || exit 1
 
 ./gradlew libertyStop
-
-sleep 20
+sleep 10
+kill `pidof java`
 
 cd ../..
 
@@ -179,14 +179,14 @@ curl -k --user bob:bobpwd https://localhost:9443/metrics/application | grep 'app
 echo ===== Stop all processes
 
 ./gradlew libertyStop
-
-sleep 20
+sleep 10
 
 cd ../..
 
 ./scripts/stopSystem.sh
-
 sleep 10
+
+kill `pidof java`
 
 echo ===== Test module-containerize =====
 
