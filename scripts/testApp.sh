@@ -43,6 +43,8 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
+sleep 5
+
 cd ../..
 
 echo ===== Test module-openapi =====
@@ -87,6 +89,8 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
+sleep 5
+
 cd ../..
 
 echo ===== Test module-config =====
@@ -97,7 +101,7 @@ cd start/inventory
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
 
-sleep 10
+sleep 5
 
 curl -s http://localhost:9080/inventory/api/systems | grep "\\[\\]" || exit 1
 
@@ -130,6 +134,8 @@ curl -X DELETE http://localhost:9080/inventory/api/systems/localhost | grep remo
 curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep "5555" || exit 1
 
 ./gradlew libertyStop
+
+sleep 5
 
 cd ../..
 
@@ -174,10 +180,13 @@ echo ===== Stop all processes
 
 ./gradlew libertyStop
 
+sleep 5
+
 cd ../..
 
 ./scripts/stopSystem.sh
 
+sleep 5
 
 echo ===== Test module-containerize =====
 
