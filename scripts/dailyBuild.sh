@@ -11,7 +11,7 @@ done
 
 echo "Testing daily build image"
 
-export RUNTIMEURL="apply plugin: 'liberty'\nliberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}"
+export RUNTIMEURL="\nliberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}"
 
 echo -e "$RUNTIMEURL" >> module-jwt/build.gradle
 cat module-jwt/build.gradle
