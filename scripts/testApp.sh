@@ -141,8 +141,6 @@ cd ../..
 
 echo ===== Test module-jwt, health, metrics =====
 
-./scripts/startSystem.sh
-
 ./scripts/finishMetrics.sh
 cd start/inventory
 
