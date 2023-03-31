@@ -87,7 +87,7 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
-sleep 30
+sleep 20
 #kill "$(pidof java)"
 pgrep java
 
@@ -134,8 +134,9 @@ curl -X DELETE http://localhost:9080/inventory/api/systems/localhost | grep remo
 curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep "5555" || exit 1
 
 ./gradlew libertyStop
-sleep 30
+sleep 20
 #kill "$(pidof java)"
+pgrep java
 
 cd ../..
 
@@ -147,7 +148,8 @@ cd start/inventory
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
 
-sleep 10
+sleep 30
+pgrep java
 
 
 echo ===== Test module-health-checks =====
