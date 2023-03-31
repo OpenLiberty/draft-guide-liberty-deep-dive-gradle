@@ -87,7 +87,7 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
-sleep 10
+sleep 20
 
 ps -ef | grep java
 
@@ -135,7 +135,7 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
-sleep 5
+sleep 20
 
 cd ../..
 
@@ -180,13 +180,13 @@ echo ===== Stop all processes
 
 ./gradlew libertyStop
 
-sleep 5
+sleep 20
 
 cd ../..
 
 ./scripts/stopSystem.sh
 
-sleep 5
+sleep 10
 
 echo ===== Test module-containerize =====
 
