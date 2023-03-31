@@ -57,9 +57,7 @@ cd start/inventory
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
 
-sleep 10
-
-curl -s http://localhost:9080/inventory/api/systems
+sleep 5
 
 curl -s http://localhost:9080/inventory/api/systems | grep "\\[\\]" || exit 1
 
@@ -103,9 +101,9 @@ cd start/inventory
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
 
-sleep 5
+sleep 10
 
-curl -s http://localhost:9080/inventory/api/systems | grep "\\[\\]" || exit 1
+curl -s http://localhost:9080/inventory/api/systems
 
 curl -s http://localhost:9080/inventory/api/systems | grep "\\[\\]" || exit 1
 
