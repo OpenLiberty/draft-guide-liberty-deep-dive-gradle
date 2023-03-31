@@ -45,8 +45,6 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 sleep 5
 
-ps -ef | grep java
-
 cd ../..
 
 echo ===== Test module-openapi =====
@@ -89,7 +87,9 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
-sleep 5
+sleep 10
+
+ps -ef | grep java
 
 cd ../..
 
