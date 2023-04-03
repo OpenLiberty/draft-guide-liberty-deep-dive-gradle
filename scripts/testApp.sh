@@ -44,7 +44,7 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 ./gradlew libertyStop
 
 sleep 30
-kill "$(pidof java)"
+killall java
 
 cd ../..
 
@@ -89,7 +89,7 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 ./gradlew libertyStop
 
 sleep 30
-kill "$(pidof java)"
+killall java
 #pgrep java
 
 cd ../..
@@ -136,7 +136,7 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 sleep 30
-kill "$(pidof java)"
+killall java
 
 cd ../..
 
@@ -185,7 +185,7 @@ cd ../..
 
 ./scripts/stopSystem.sh
 sleep 30
-kill "$(pidof java)"
+killall java
 
 echo ===== Test module-containerize =====
 
