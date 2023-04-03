@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euxo pipefail
 
+pgrep java
+kill "$(pidof java)"
+pgrep java
+
 echo ===== Test module-getting-started =====
 cd ..
 ./scripts/finishGettingStarted.sh
