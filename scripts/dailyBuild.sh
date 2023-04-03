@@ -11,7 +11,7 @@ done
 
 echo "Testing daily build image"
 
-export RUNTIMEURL="liberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}"
+export RUNTIMEURL="liberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}\n"
 
 sed -i "s;clean.dependsOn;$RUNTIMEURL\nclean.dependsOn;g" module-jwt/build.gradle module-getting-started/build.gradle system/build.gradle module-config/build.gradle module-securing/build.gradle module-openapi/build.gradle
 echo "=== module-jwt/build.gradle ==="
