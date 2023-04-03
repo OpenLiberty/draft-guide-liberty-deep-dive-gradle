@@ -138,9 +138,22 @@ killall java
 
 cd ../..
 
+echo ===== Start system =====
+cd ./finish/system || exit
+./gradlew clean war libertyCreate installFeature deploy
+./gradlew libertyStart
+cd ../..
+
 echo ===== Test module-jwt, health, metrics =====
 
-./scripts/finishMetrics.sh
+cp -fr ./finish/module-jwt/* ./start/inventory
+mkdir -p ./start/inventory/src/main/liberty/config/resources/security
+cp ./finish/system/src/main/liberty/config/resources/security/key.p12 ./start/inventory/src/main/liberty/config/resources/security/key.p12
+mkdir ./start/inventory/src/main/java/io/openliberty/deepdive/rest/health
+cp ./finish/module-health-checks/src/main/java/io/openliberty/deepdive/rest/health/*.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest/health
+cp ./finish/module-metrics/src/main/liberty/config/server.xml ./start/inventory/src/main/liberty/config
+cp ./finish/module-metrics/src/main/java/io/openliberty/deepdive/rest/SystemResource.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest
+
 cd start/inventory
 
 ./gradlew clean war libertyCreate installFeature deploy
@@ -148,7 +161,8 @@ cd start/inventory
 
 sleep 20
 
-echo ===== Test module-health-checks =====
+
+echo ===== Test health checks =====
 
 curl http://localhost:9080/health/started | grep "\"status\":" || exit 1
 curl http://localhost:9080/health/live | grep "\"status\":" || exit 1
@@ -181,8 +195,10 @@ sleep 10
 
 cd ../..
 
-./scripts/stopSystem.sh
+cd ./finish/system
+./gradlew libertyStop
 sleep 15
+
 killall java
 
 echo ===== Test module-containerize =====
