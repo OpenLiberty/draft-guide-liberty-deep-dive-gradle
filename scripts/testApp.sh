@@ -44,6 +44,7 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 ./gradlew libertyStop
 
 sleep 5
+pgrep java
 
 cd ../..
 
@@ -188,6 +189,7 @@ cd ../..
 ./scripts/stopSystem.sh
 sleep 30
 #kill "$(pidof java)"
+pgrep java
 
 echo ===== Test module-containerize =====
 
