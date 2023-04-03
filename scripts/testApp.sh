@@ -1,10 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-pgrep java
-kill "$(pidof java)"
-pgrep java
-
 echo ===== Test module-getting-started =====
 cd ..
 ./scripts/finishGettingStarted.sh
@@ -47,8 +43,8 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
-sleep 40
-pgrep java
+sleep 30
+kill "$(pidof java)"
 
 cd ../..
 
@@ -92,9 +88,9 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
-sleep 40
-#kill "$(pidof java)"
-pgrep java
+sleep 30
+kill "$(pidof java)"
+#pgrep java
 
 cd ../..
 
@@ -139,9 +135,8 @@ curl -X DELETE http://localhost:9080/inventory/api/systems/localhost | grep remo
 curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep "5555" || exit 1
 
 ./gradlew libertyStop
-sleep 40
-#kill "$(pidof java)"
-pgrep java
+sleep 30
+kill "$(pidof java)"
 
 cd ../..
 
@@ -153,9 +148,7 @@ cd start/inventory
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
 
-sleep 40
-pgrep java
-
+sleep 20
 
 echo ===== Test module-health-checks =====
 
@@ -192,8 +185,7 @@ cd ../..
 
 ./scripts/stopSystem.sh
 sleep 30
-#kill "$(pidof java)"
-pgrep java
+kill "$(pidof java)"
 
 echo ===== Test module-containerize =====
 
