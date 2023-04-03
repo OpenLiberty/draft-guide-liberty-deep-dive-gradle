@@ -198,8 +198,10 @@ cd ../..
 cd ./finish/system
 ./gradlew libertyStop
 sleep 15
-
 killall java
+
+
+cd ../..
 
 echo ===== Test module-containerize =====
 
