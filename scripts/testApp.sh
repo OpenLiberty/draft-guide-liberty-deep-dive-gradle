@@ -43,7 +43,7 @@ curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep
 
 ./gradlew libertyStop
 
-sleep 5
+sleep 40
 pgrep java
 
 cd ../..
