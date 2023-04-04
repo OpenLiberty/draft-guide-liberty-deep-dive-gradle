@@ -142,7 +142,7 @@ echo ===== Start system =====
 cd ./finish/system || exit
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
-sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
+sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || cat ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
 cd ../..
 
 echo ===== Test module-jwt, health, metrics =====
@@ -176,7 +176,7 @@ curl -s http://localhost:9080/inventory/api/systems
 
 #curl -k --user bob:bobpwd -X POST 'https://localhost:9443/inventory/api/systems/client/localhost' | grep "was added" || exit 1
 curl -k --user bob:bobpwd -X POST 'https://localhost:9443/inventory/api/systems/client/localhost'
-sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
+sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || cat ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
 curl 'http://localhost:9080/inventory/api/systems' | grep "\"heapSize\":" || exit 1
 
 
