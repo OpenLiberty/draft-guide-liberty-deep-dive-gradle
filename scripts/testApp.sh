@@ -152,8 +152,6 @@ mkdir -p ./start/inventory/src/main/liberty/config/resources/security
 cp ./finish/system/src/main/liberty/config/resources/security/key.p12 ./start/inventory/src/main/liberty/config/resources/security/key.p12
 mkdir ./start/inventory/src/main/java/io/openliberty/deepdive/rest/health
 cp ./finish/module-health-checks/src/main/java/io/openliberty/deepdive/rest/health/*.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest/health
-cp ./finish/module-metrics/src/main/liberty/config/server.xml ./start/inventory/src/main/liberty/config
-cp ./finish/module-metrics/src/main/java/io/openliberty/deepdive/rest/SystemResource.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest
 
 cd start/inventory
 
@@ -179,8 +177,20 @@ curl -k --user bob:bobpwd -X POST 'https://localhost:9443/inventory/api/systems/
 sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || cat ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
 curl 'http://localhost:9080/inventory/api/systems' | grep "\"heapSize\":" || exit 1
 
+./gradlew libertyStop
+sleep 15
+killall java
+
+cd ../..
 
 echo ===== Test module-metrics =====
+
+cp ./finish/module-metrics/src/main/liberty/config/server.xml ./start/inventory/src/main/liberty/config
+cp ./finish/module-metrics/src/main/java/io/openliberty/deepdive/rest/SystemResource.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest
+
+./gradlew libertyStart
+
+sleep 20
 
 curl -k --user bob:bobpwd -X DELETE https://localhost:9443/inventory/api/systems/localhost
 curl -X POST "http://localhost:9080/inventory/api/systems?heapSize=1048576&hostname=localhost&javaVersion=9&osName=linux"
@@ -188,7 +198,6 @@ curl -k --user alice:alicepwd -X PUT "http://localhost:9080/inventory/api/system
 curl -s http://localhost:9080/inventory/api/systems
 
 curl -k --user bob:bobpwd https://localhost:9443/metrics/application | grep 'application_addSystemClient_total 0\|application_addSystem_total 1\|application_updateSystem_total 1\|application_removeSystem_total 1' || exit 1
-
 
 echo ===== Stop all processes
 
