@@ -2,13 +2,13 @@
 set -euxo pipefail
 
 echo ===== Test module-getting-started =====
+
 cd ..
 ./scripts/finishGettingStarted.sh
 cd start/inventory
 
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
-
 sleep 5
 
 curl -s http://localhost:9080/inventory/api/systems | grep "\\[\\]" || exit 1
@@ -42,7 +42,6 @@ curl -X DELETE http://localhost:9080/inventory/api/systems/localhost | grep remo
 curl -X POST http://localhost:9080/inventory/api/systems/client/localhost | grep "not implemented" || exit 1
 
 ./gradlew libertyStop
-
 sleep 15
 killall java
 
@@ -55,7 +54,6 @@ cd start/inventory
 
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
-
 sleep 5
 
 curl -s http://localhost:9080/inventory/api/systems | grep "\\[\\]" || exit 1
@@ -99,7 +97,6 @@ cd start/inventory
 
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
-
 sleep 10
 
 curl -s http://localhost:9080/inventory/api/systems
@@ -142,7 +139,7 @@ echo ===== Start system =====
 cd ./finish/system || exit
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
-sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || cat ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
+#sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || cat ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
 cd ../..
 
 echo ===== Test module-jwt, health, metrics =====
@@ -157,8 +154,7 @@ cd start/inventory
 
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
-
-sleep 20
+sleep 10
 
 
 echo ===== Test health checks =====
@@ -174,7 +170,7 @@ curl -s http://localhost:9080/inventory/api/systems
 
 #curl -k --user bob:bobpwd -X POST 'https://localhost:9443/inventory/api/systems/client/localhost' | grep "was added" || exit 1
 curl -k --user bob:bobpwd -X POST 'https://localhost:9443/inventory/api/systems/client/localhost'
-sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || cat ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
+#sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || cat ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
 curl 'http://localhost:9080/inventory/api/systems' | grep "\"heapSize\":" || exit 1
 
 ./gradlew libertyStop
@@ -188,9 +184,9 @@ echo ===== Test module-metrics =====
 cp ./finish/module-metrics/src/main/liberty/config/server.xml ./start/inventory/src/main/liberty/config
 cp ./finish/module-metrics/src/main/java/io/openliberty/deepdive/rest/SystemResource.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest
 
+cd start/inventory
 ./gradlew libertyStart
-
-sleep 20
+sleep 10
 
 curl -k --user bob:bobpwd -X DELETE https://localhost:9443/inventory/api/systems/localhost
 curl -X POST "http://localhost:9080/inventory/api/systems?heapSize=1048576&hostname=localhost&javaVersion=9&osName=linux"
@@ -203,14 +199,7 @@ echo ===== Stop all processes
 
 ./gradlew libertyStop
 sleep 10
-
-cd ../..
-
-cd ./finish/system
-./gradlew libertyStop
-sleep 15
 killall java
-
 
 cd ../..
 
