@@ -154,7 +154,7 @@ cd start/inventory
 
 ./gradlew clean war libertyCreate installFeature deploy
 ./gradlew libertyStart
-sleep 10
+sleep 20
 
 
 echo ===== Test health checks =====
@@ -185,6 +185,7 @@ cp ./finish/module-metrics/src/main/liberty/config/server.xml ./start/inventory/
 cp ./finish/module-metrics/src/main/java/io/openliberty/deepdive/rest/SystemResource.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest
 
 cd start/inventory
+./gradlew war deploy
 ./gradlew libertyStart
 sleep 10
 
