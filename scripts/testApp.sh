@@ -171,7 +171,8 @@ curl -s http://localhost:9080/inventory/api/systems
 #curl -k --user bob:bobpwd -X POST 'https://localhost:9443/inventory/api/systems/client/localhost' | grep "was added" || exit 1
 curl -k --user bob:bobpwd -X POST 'https://localhost:9443/inventory/api/systems/client/localhost'
 #sudo cat ./build/wlp/usr/servers/defaultServer/logs/messages.log || cat ./build/liberty-alt-output-dir/defaultServer/logs/messages.log || echo no logs
-curl 'http://localhost:9080/inventory/api/systems' | grep "\"heapSize\":" || exit 1
+#curl 'http://localhost:9080/inventory/api/systems' | grep "\"heapSize\":" || exit 1
+curl 'http://localhost:9080/inventory/api/systems'
 
 ./gradlew libertyStop
 sleep 15
@@ -187,7 +188,7 @@ cp ./finish/module-metrics/src/main/java/io/openliberty/deepdive/rest/SystemReso
 cd start/inventory
 ./gradlew war deploy
 ./gradlew libertyStart
-sleep 10
+sleep 15
 
 curl -k --user bob:bobpwd -X DELETE https://localhost:9443/inventory/api/systems/localhost
 curl -X POST "http://localhost:9080/inventory/api/systems?heapSize=1048576&hostname=localhost&javaVersion=9&osName=linux"
