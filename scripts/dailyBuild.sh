@@ -33,4 +33,4 @@ cat module-kubernetes/Containerfile
 sed -i "s;95;999;g" module-health-checks/src/main/java/io/openliberty/deepdive/rest/health/StartupCheck.java
 cat module-health-checks/src/main/java/io/openliberty/deepdive/rest/health/StartupCheck.java
 
-../scripts/testApp.sh
+sudo -u runner ../scripts/testApp.sh
