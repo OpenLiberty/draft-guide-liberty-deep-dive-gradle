@@ -1424,7 +1424,7 @@ endif::[]
 ifdef::cloud-hosted[]
 Run the following curl command to see the application metrics that are enabled through MicroProfile Metrics:
 ```bash
-curl -k --user bob:bobpwd https://localhost:9443/metrics?scope=application
+curl -k --user bob:bobpwd https://localhost:9443/metrics\?scope=application
 ```
 
 You can expect to see your application metrics in text format as the following output:
@@ -1446,12 +1446,12 @@ application_removeSystem_total 1
 
 To see the system metrics, run the following curl command:
 ```bash
-curl -k --user bob:bobpwd https://localhost:9443/metrics?scope=base
+curl -k --user bob:bobpwd https://localhost:9443/metrics\?scope=base
 ```
 
 To see the vendor metrics, run the following curl command:
 ```bash
-curl -k --user bob:bobpwd https://localhost:9443/metrics?scope=vendor
+curl -k --user bob:bobpwd https://localhost:9443/metrics\?scope=vendor
 ```
 
 To review all the metrics, run the following curl command:
