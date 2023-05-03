@@ -1403,18 +1403,18 @@ To see only the application metrics, point your browser to https://localhost:944
 
 [source, role="no_copy"]
 ----
-# TYPE application_addSystemClient_total counter
-# HELP application_addSystemClient_total Number of times adding a system by client is called
-application_addSystemClient_total 0
-# TYPE application_addSystem_total counter
-# HELP application_addSystem_total Number of times adding system endpoint is called
-application_addSystem_total 1
-# TYPE application_updateSystem_total counter
-# HELP application_updateSystem_total Number of times updating a system endpoint is called
-application_updateSystem_total 1
-# TYPE application_removeSystem_total counter
-# HELP application_removeSystem_total Number of times removing a system endpoint is called
-application_removeSystem_total 1
+# HELP updateSystem_total Number of times updating a system endpoint is called
+# TYPE updateSystem_total counter
+updateSystem_total{mp_scope="application",} 1.0
+# HELP removeSystem_total Number of times removing a system endpoint is called
+# TYPE removeSystem_total counter
+removeSystem_total{mp_scope="application",} 1.0
+# HELP addSystemClient_total Number of times adding a system by client is called
+# TYPE addSystemClient_total counter
+addSystemClient_total{mp_scope="application",} 0.0
+# HELP addSystem_total Number of times adding system endpoint is called
+# TYPE addSystem_total counter
+addSystem_total{mp_scope="application",} 1.0
 ----
 
 You can see the system metrics at the https://localhost:9443/metrics?scope=base[^] URL. You can also see the vendor metrics at the https://localhost:9443/metrics?scope=vendor[^] URL.
