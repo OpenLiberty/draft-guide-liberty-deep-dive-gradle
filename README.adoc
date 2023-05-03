@@ -83,7 +83,7 @@ endif::[]
 
 Liberty now offers an easier way to get started with developing your application: the Open Liberty Starter. This tool provides a simple and quick way to get the necessary files to start building an application on Liberty. Through this tool, you can specify your application and project name. You can also choose a build tool from either Maven or Gradle, and pick the Java SE, Jakarta EE, and MicroProfile versions for your application.
 
-In this workshop, the starting project is provided for you or you can use the Open Liberty Starter to create the starting point of the application. Gradle is used as the selected build tool and the application uses of Jakarta EE 9.1 and MicroProfile 5.
+In this workshop, the starting project is provided for you or you can use the Open Liberty Starter to create the starting point of the application. Gradle is used as the selected build tool and the application uses of Jakarta EE 10 and MicroProfile 6.
 
 To get started with this tool, see the Getting Started page: https://openliberty.io/start/[https://openliberty.io/start/^]
 
