@@ -10,7 +10,7 @@
     <!-- end::transaction-type[] -->
       <!-- tag::jta-data[] -->
       <jta-data-source>jdbc/postgresql</jta-data-source>
-      <!-- end::jta-data[] -->
+      <class>io.openliberty.deepdive.rest.model.SystemData</class>
       <exclude-unlisted-classes>false</exclude-unlisted-classes>
       <properties>
         <property name="jakarta.persistence.schema-generation.database.action"

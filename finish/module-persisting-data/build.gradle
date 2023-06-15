@@ -55,7 +55,7 @@ task copyJdbcLibs(type: Copy) {
     into "${buildDir}/wlp/usr/shared/resources"
 }
 
-deploy.dependsOn 'copyJDBC'
+deploy.dependsOn 'copyJdbcLibs'
 // end::copyJDBC[]
 
 clean.dependsOn 'libertyStop'
