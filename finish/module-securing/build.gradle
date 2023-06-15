@@ -16,10 +16,15 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    jdbcLib
+}
+
 dependencies {
     // provided dependencies
     providedCompile 'jakarta.platform:jakarta.jakartaee-api:10.0.0'
     providedCompile 'org.eclipse.microprofile:microprofile:6.0'
+    jdbcLib 'org.postgresql:postgresql:42.3.8'
 }
 
 war {
@@ -31,5 +36,12 @@ ext  {
     liberty.server.var.'default.https.port' = '9443'
     liberty.server.var.'default.context.root' = '/inventory'
 }
+
+task copyJdbcLibs(type: Copy) {
+    from configurations.jdbcLib
+    into "${buildDir}/wlp/usr/shared/resources"
+}
+
+deploy.dependsOn 'copyJdbcLibs'
 
 clean.dependsOn 'libertyStop'
