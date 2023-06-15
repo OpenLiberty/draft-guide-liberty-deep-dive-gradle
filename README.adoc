@@ -868,7 +868,7 @@ build.gradle
 include::finish/module-persisting-data/build.gradle[]
 ----
 
-The [hotspot=postgresql file=2]`postgresql` dependency ensures that Maven downloads the PostgreSQL library to local project. The [hotspot=copyDependencies file=2]`copyDependencies` configuration tells the Liberty Maven plug-in to copy the library to the Liberty shared resources directory.
+The [hotspot=postgresql file=2]`postgresql` dependency under the [hotspot=configurations file=2]`jdbcLib` configuration ensures that Gradle downloads the PostgreSQL library to local project. The [hotspot=copyJDBC file=2]`copyJdbcLibs` task copies the library to the Liberty shared resources directory and ensures that the driver is available for the Liberty server's use each time the project is built.
 
 === Starting PostgreSQL database ===
 
