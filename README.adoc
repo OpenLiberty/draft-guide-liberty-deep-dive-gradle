@@ -1752,9 +1752,23 @@ The [hotspot=from file=0]`FROM` instruction initializes a new build stage and in
 
 To help you manage your images, you can label your container images with the [hotspot=label file=0]`LABEL` command. 
 
-The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` `[--chown=<user>:<group>]` `<source>` `<destination>`. They copy local files into the specified destination within your container  image. In this case, the first [hotspot=copy-config file=0]`COPY` instruction copies the server configuration file that is at `src/main/liberty/config/server.xml` to the `/config/` destination directory. Similarly, the second [hotspot=copy-war file=0]`COPY` instruction copies the `.war` file to the `/config/apps` destination directory.
+The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` `[--chown=<user>:<group>]` `<source>` `<destination>`. They copy local files into the specified destination within your container  image. In this case, the first [hotspot=copy-config file=0]`COPY` instruction copies the server configuration file that is at `src/main/liberty/config/server.xml` to the `/config/` destination directory. Similarly, the second [hotspot=copy-war file=0]`COPY` instruction copies the `.war` file to the `/config/apps` destination directory. The third [hotspot=copy-jar file=0]`COPY` instruction copies the PostgreSQL library file to the Liberty shared resources directory.
 
+Next, make the PostgreSQL database configurable in the Liberty server configuraton file.
 
+[role='code_command hotspot file=1', subs="quotes"]
+----
+#Replace the `server.xml` file.#
+`src/main/liberty/config/server.xml`
+----
+
+server.xml
+[source, xml, linenums, role='code_column hide_tags=copyright']
+----
+include::finish/module-kubernetes/src/main/liberty/config/server.xml[]
+----
+
+Instead of the hard-coded `serverName`, `portNumber`, `user`, and `password` values in the [hotspot=postgresProperties file=1]`properties.postgresql` properties, use `${postgres/hostname}`, `${postgres/portnum}`, `${postgres/username}`, and `${postgres/password}`, which are defined by the [hotspot=variables file=1]`variable` elements.
 
 === Building the container image
 
@@ -1816,11 +1830,27 @@ icr.io/appcafe/open-liberty            full-java11-openj9-ubi
 
 === Running the application in container
 
-Now that the `inventory` container image is built, you will run the application in container:
+Now that the `inventory` container image is built, you will run the application in container with the PostgreSQL container IP address.
+
+Retrieve the PostgreSQL container IP address by running the following command:
 
 [role='command']
 ```
-podman run -d --name inventory -p 9080:9080 liberty-deepdive-inventory:1.0-SNAPSHOT
+podman inspect -f "{{.NetworkSettings.IPAddress }}" postgres-container
+```
+
+The command returns the PostgreSQL container IP address:
+
+[role="no_copy"]
+----
+10.88.0.10
+----
+
+Run the container with the PostgreSQL container IP address. If your PostgreSQL container IP address is not `10.88.0.10`, replace the command with the right IP address.
+
+[role='command']
+```
+podman run -d --name inventory -p 9080:9080 -e POSTGRES_HOSTNAME=10.88.0.10 liberty-deepdive-inventory:1.0-SNAPSHOT
 ```
 
 The following table describes the flags in this command: 
@@ -1831,6 +1861,7 @@ The following table describes the flags in this command:
 | -d     | Runs the container in the background.
 | --name | Specifies a name for the container.
 | -p     | Maps the host ports to the container ports. For example: `-p <HOST_PORT>:<CONTAINER_PORT>`
+| -e     | Sets environment variables within the container. For example: `-e <VARIABLE_NAME>=<value>`
 |===
 
 Next, run the `podman ps` command to verify that your container is started:
@@ -1853,12 +1884,14 @@ list that the `podman ps` command displays. Instead, your container appear with 
 
 Now, you can access the application by the http://localhost:9080/inventory/api/systems URL. Alternatively, for the updated OpenAPI UI, use the following URL http://localhost:9080/openapi/ui/.
 
-When you’re finished trying out the application, run the following commands to stop the container:
+When you’re finished trying out the application, run the following commands to stop the `inventory` container and the PostgreSQL container that was started in the previous section:
 
 [role='command']
 ```
 podman stop inventory
 podman rm inventory
+podman stop postgres-container
+podman rm postgres-container
 ```
 
 To learn how to optimize the image size, check out the https://openliberty.io/guides/containerize-podman.html#optimizing-the-image-size[Containerizing microservices with Podman guide^].

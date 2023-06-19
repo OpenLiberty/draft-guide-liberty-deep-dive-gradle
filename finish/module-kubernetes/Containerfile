@@ -46,6 +46,18 @@ COPY --chown=1001:0 \
     /config/apps
     # end::config-apps[]
 # end::copy-war[]
+
+# tag::copy-jar[]
+# tag::jar-userID[]
+COPY --chown=1001:0 \
+# end::jar-userID[]
+    # tag::inventory-jar[]
+    build/wlp/usr/shared/resources/*.jar \
+    # end::inventory-jar[]
+    # tag::shared-resources[]
+    /opt/ol/wlp/usr/shared/resources/
+    # end::shared-resources[]
+# end::copy-jar[]
 # end::copy[]
 
 USER 1001
