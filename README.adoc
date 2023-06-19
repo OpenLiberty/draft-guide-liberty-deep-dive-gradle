@@ -1888,10 +1888,8 @@ When you’re finished trying out the application, run the following commands to
 
 [role='command']
 ```
-podman stop inventory
-podman rm inventory
-podman stop postgres-container
-podman rm postgres-container
+podman stop inventory postgres-container
+podman rm inventory postgres-container
 ```
 
 To learn how to optimize the image size, check out the https://openliberty.io/guides/containerize-podman.html#optimizing-the-image-size[Containerizing microservices with Podman guide^].
