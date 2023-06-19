@@ -1915,11 +1915,11 @@ liberty {
 
 Rebuild and restart the `inventory` service by dev mode:
 
-[role="no_copy"]
-----
+[role='command']
+```
 ./gradlew clean
 ./gradlew libertyDev
-----
+```
 
 In the `Containerfile`, replace the Liberty image at the `FROM` statement with `websphere-liberty` as shown in the following example:
 [role="no_copy"]
