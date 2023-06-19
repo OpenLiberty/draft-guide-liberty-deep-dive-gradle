@@ -214,7 +214,7 @@ cd start/inventory
 
 podman images
 postgres_hostname="$(podman inspect -f "{{.NetworkSettings.IPAddress}}" postgres-container)"
-podman run -d --name inventory -p 9080:9080 -e POSTGRES_HOSTNAME=$postgres_hostname liberty-deepdive-inventory:1.0-SNAPSHOT
+podman run -d --name inventory -p 9080:9080 -e POSTGRES_HOSTNAME="$postgres_hostname" liberty-deepdive-inventory:1.0-SNAPSHOT
 podman ps 
 sleep 30
 
