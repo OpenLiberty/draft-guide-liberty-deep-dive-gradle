@@ -225,5 +225,8 @@ curl http://localhost:9080/health/ready | grep "\"status\":\"UP\"" || exit 1
 podman stop inventory
 podman rm inventory
 
+cd ../..
+./scripts/stopPostgres.sh
+
 echo ===== TESTS PASSED =====
 exit 0
