@@ -11,4 +11,4 @@ call .\scripts\startPostgres.bat
 
 echo Now, you may run following commands to continue the tutorial:
 echo cd start\inventory
-echo mvn liberty:dev -DserverStartTimeout=120
+echo ./gradlew libertyDev
