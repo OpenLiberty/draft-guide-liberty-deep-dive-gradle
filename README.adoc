@@ -195,7 +195,7 @@ gradlew libertyRun
 
 The `gradlew` command initiates a Gradle build, during which the target directory is created to store all build-related files.
 
-The `libertyRun` argument specifies the Liberty `run` task, which starts a Liberty server instance in the foreground. As part of this phase, a Liberty server runtime is downloaded and installed into the `build/wlp` directory. Additionally, a server instance is created and configured in the `build/wlp/usr/servers/defaultServer` directory, and the application is installed into that server by using https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
+The `libertyRun` argument specifies the Liberty `run` task, which starts a Liberty instance instance in the foreground. As part of this phase, a Liberty instance runtime is downloaded and installed into the `build/wlp` directory. Additionally, a server instance is created and configured in the `build/wlp/usr/servers/defaultServer` directory, and the application is installed into that server by using https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
 
 For more information about the Liberty Gradle plug-in, see its https://github.com/OpenLiberty/ci.gradle[GitHub repository^].
 
@@ -226,7 +226,7 @@ gradlew libertyStop
 --
 
 
-=== Starting and stopping the Liberty server in the background
+=== Starting and stopping the Liberty instance in the background
 
 Although you can start and stop the server in the foreground by using the Gradle `libertyRun` task, you can also start and stop the server in the background with the Gradle `libertyStart` and `libertyStop` goals:
 
@@ -251,9 +251,9 @@ gradlew libertyStop
 
 === Updating the server configuration without restarting the server
 
-The Liberty Gradle plug-in includes a `dev` task that listens for any changes in the project, including application source code or configuration. The Liberty server automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
+The Liberty Gradle plug-in includes a `dev` task that listens for any changes in the project, including application source code or configuration. The Liberty instance automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
 
-If the Liberty server is running, stop it and restart it in dev mode by running the `libertyDev` goal in the `start/inventory` directory:
+If the Liberty instance is running, stop it and restart it in dev mode by running the `libertyDev` goal in the `start/inventory` directory:
 
 include::{common-includes}/os-tabs.adoc[]
 [.tab_content.windows_section]
@@ -272,7 +272,7 @@ gradlew libertyDev
 ```
 --
 
-After you see the following message, your application server in dev mode is ready:
+After you see the following message, your Liberty instance is ready in dev mode:
 
 [role="no_copy"]
 ----
@@ -381,7 +381,7 @@ The Jakarta RESTful Web Services API supports a number of ways to marshal JSON. 
 
 === Running the application
 
-Because you started the Liberty server in dev mode at the beginning of this exercise, all the changes were automatically picked up.
+Because you started the Liberty instance in dev mode at the beginning of this exercise, all the changes were automatically picked up.
 
 Check out the service that you created at the http://localhost:9080/inventory/api/systems URL. If successful, it returns `[]` to you.
 
@@ -449,7 +449,7 @@ Note, the `@Parameter` annotation can be placed either [hotspot=getSystemParamet
 
 Many OpenAPI annotations are available and can be used according to what's best for your application and its classes. You can find all the annotations in the https://download.eclipse.org/microprofile/microprofile-open-api-3.0/microprofile-openapi-spec-3.0.html#_annotations[MicroProfile OpenAPI specification^].
 
-Because the Liberty server was started in dev mode at the beginning of this exercise, your changes were automatically picked up. Go to the http://localhost:9080/openapi URL to see the updated endpoint descriptions. The endpoints at which your REST methods are served now more meaningful:
+Because the Liberty instance was started in dev mode at the beginning of this exercise, your changes were automatically picked up. Go to the http://localhost:9080/openapi URL to see the updated endpoint descriptions. The endpoints at which your REST methods are served now more meaningful:
 
 ifdef::cloud-hosted[]
 ```bash
@@ -551,12 +551,12 @@ You can learn more about MicroProfile OpenAPI from the https://openliberty.io/gu
 
 ==  Configuring the microservice
 
-Next, you can externalize your Liberty server configuration and inject configuration for your microservice by using MicroProfile Config.
+Next, you can externalize your Liberty instance configuration and inject configuration for your microservice by using MicroProfile Config.
 
 
 === Enabling configurable ports and context root
 
-So far, you used hardcoded values to set the HTTP and HTTPS ports and the context root for the Liberty server. These configurations can be externalized so you can easily change their values when you want to deploy your microservice by different ports and context root.
+So far, you used hardcoded values to set the HTTP and HTTPS ports and the context root for the Liberty instance. These configurations can be externalized so you can easily change their values when you want to deploy your microservice by different ports and context root.
 
 [role='code_command hotspot file=0', subs="quotes"]
 ----
@@ -590,7 +590,7 @@ Set the [hotspot=war file=1]`archiveVersion` property to an empty string for the
 * [hotspot=httpsPort file=1]`liberty.server.var.'default.https.port'` to `9445`
 * [hotspot=contextRoot file=1]`liberty.server.var.'default.context.root'` to `/trial`
 
-Because you are using dev mode, these changes are automatically picked up by the server. After you see the following message, your application server in dev mode is ready again:
+Because you are using dev mode, these changes are automatically picked up by the server. After you see the following message, your Liberty instance is ready in dev mode again:
 
 [role="no_copy"]
 ----
@@ -1080,7 +1080,7 @@ gradlew libertyDev
 ```
 --
 
-After you see the following message, your application server in dev mode is ready again:
+After you see the following message, your Liberty instance is ready in dev mode again:
 
 [role="no_copy"]
 ----
