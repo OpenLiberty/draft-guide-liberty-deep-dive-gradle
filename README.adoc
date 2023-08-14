@@ -157,7 +157,7 @@ build.gradle
 include::finish/module-getting-started/build.gradle[]
 ----
 
-Your [hotspot file=0]`settings.gradle` and [hotspot file=1]`build.gradle` files are located in the `start/inventory` directory and is configured to include the [hotspot=libertyGradlePlugin file=1]`io.openliberty.tools.gradle.Liberty` Liberty Gradle plugin. Using the plug-in, you can install applications into Liberty and manage the server instances.
+Your [hotspot file=0]`settings.gradle` and [hotspot file=1]`build.gradle` files are located in the `start/inventory` directory and is configured to include the [hotspot=libertyGradlePlugin file=1]`io.openliberty.tools.gradle.Liberty` Liberty Gradle plugin. Using the plug-in, you can install applications into Liberty and manage the associated Liberty instances.
 
 To begin, open a command-line session and navigate to your application directory. 
 
