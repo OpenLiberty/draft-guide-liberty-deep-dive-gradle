@@ -731,7 +731,7 @@ cd /home/project/guide-liberty-deep-dive-gradle/start/inventory
 ```
 endif::[]
 
-Begin by adding some users and user groups to your `server.xml` Liberty configuration file.
+Begin by adding some users and user groups to your Liberty `server.xml` configuration file.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -987,11 +987,11 @@ A JWT instance is injected to the [hotspot=jwt file=0]`jwt` field variable by th
 
 === Configuring the JSON Web Token
 
-Next, add the JSON Web Token (Single Sign On) feature to the server configuration file for the `inventory` service.
+Next, add the JSON Web Token (Single Sign On) feature to the `server.xml` configuration file for the `inventory` service.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
-#Replace the `server.xml` file.#
+#Replace the Liberty `server.xml` configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 
@@ -1500,7 +1500,7 @@ The [hotspot=from file=0]`FROM` instruction initializes a new build stage and in
 
 To help you manage your images, you can label your container images with the [hotspot=label file=0]`LABEL` command. 
 
-The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` `[--chown=<user>:<group>]` `<source>` `<destination>`. They copy local files into the specified destination within your container  image. In this case, the first [hotspot=copy-config file=0]`COPY` instruction copies the server configuration file that is at `src/main/liberty/config/server.xml` to the `/config/` destination directory. Similarly, the second [hotspot=copy-war file=0]`COPY` instruction copies the `.war` file to the `/config/apps` destination directory.
+The [hotspot=copy file=0]`COPY` instructions are structured as `COPY` `[--chown=<user>:<group>]` `<source>` `<destination>`. They copy local files into the specified destination within your container  image. In this case, the first [hotspot=copy-config file=0]`COPY` instruction copies the Liberty configuration file that is at `src/main/liberty/config/server.xml` to the `/config/` destination directory. Similarly, the second [hotspot=copy-war file=0]`COPY` instruction copies the `.war` file to the `/config/apps` destination directory.
 
 
 
