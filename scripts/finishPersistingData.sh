@@ -4,6 +4,7 @@ if [[ -e ./start/inventory ]]; then
     rm -fr ./start/inventory
 fi
 mkdir ./start/inventory
+cp -fr ./finish/module-starter/* ./start/inventory
 cp -fr ./finish/module-persisting-data/* ./start/inventory
 
 ./scripts/startPostgres.sh

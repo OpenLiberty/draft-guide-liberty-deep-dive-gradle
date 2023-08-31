@@ -40,6 +40,12 @@ ext  {
     // end::https[]
 }
 
+sourceSets {
+  main {
+    output.resourcesDir = file('build/classes/java/main')
+  }
+}
+
 task copyJdbcLibs(type: Copy) {
     from configurations.jdbcLib
     into "${buildDir}/wlp/usr/shared/resources"

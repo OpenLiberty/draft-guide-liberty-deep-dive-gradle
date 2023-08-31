@@ -49,6 +49,14 @@ ext  {
     // end::contextRoot[]
 }
 
+// tag::setResourcesDir[]
+sourceSets {
+  main {
+    output.resourcesDir = file('build/classes/java/main')
+  }
+}
+// end::setResourcesDir[]
+
 // tag::copyJDBC[]
 task copyJdbcLibs(type: Copy) {
     from configurations.jdbcLib

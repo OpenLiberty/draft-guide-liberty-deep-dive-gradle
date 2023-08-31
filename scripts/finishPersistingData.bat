@@ -5,6 +5,7 @@ if exist ".\start\inventory" (
 )
 
 mkdir ".\start\inventory"
+robocopy %CD%\finish\module-starter\ %CD%\start\inventory *.* /e /NFL /NDL /NJH /NJS /nc /ns /np
 robocopy %CD%\finish\module-persisting-data\ %CD%\start\inventory\ *.* /e /NFL /NDL /NJH /NJS /nc /ns /np
 
 call .\scripts\startPostgres.bat
