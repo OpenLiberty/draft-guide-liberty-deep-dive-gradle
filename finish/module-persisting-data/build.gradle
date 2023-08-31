@@ -47,15 +47,10 @@ ext  {
     // tag::contextRoot[]
     liberty.server.var.'default.context.root' = '/inventory'
     // end::contextRoot[]
+    // tag::setResourcesDir[]
+    sourceSets.main.output.resourcesDir = sourceSets.main.java.destinationDirectory
+    // end::setResourcesDir[]
 }
-
-// tag::setResourcesDir[]
-sourceSets {
-  main {
-    output.resourcesDir = file('build/classes/java/main')
-  }
-}
-// end::setResourcesDir[]
 
 // tag::copyJDBC[]
 task copyJdbcLibs(type: Copy) {

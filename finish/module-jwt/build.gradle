@@ -38,12 +38,7 @@ ext  {
     // tag::https[]
     liberty.server.var.'client.https.port' = '9444'
     // end::https[]
-}
-
-sourceSets {
-  main {
-    output.resourcesDir = file('build/classes/java/main')
-  }
+    sourceSets.main.output.resourcesDir = sourceSets.main.java.destinationDirectory
 }
 
 task copyJdbcLibs(type: Copy) {

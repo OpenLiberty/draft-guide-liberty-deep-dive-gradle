@@ -35,12 +35,7 @@ ext  {
     liberty.server.var.'default.http.port' = '9080'
     liberty.server.var.'default.https.port' = '9443'
     liberty.server.var.'default.context.root' = '/inventory'
-}
-
-sourceSets {
-  main {
-    output.resourcesDir = file('build/classes/java/main')
-  }
+    sourceSets.main.output.resourcesDir = sourceSets.main.java.destinationDirectory
 }
 
 task copyJdbcLibs(type: Copy) {
