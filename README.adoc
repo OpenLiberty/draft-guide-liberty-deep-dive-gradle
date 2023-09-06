@@ -868,7 +868,7 @@ build.gradle
 include::finish/module-persisting-data/build.gradle[]
 ----
 
-The [hotspot=postgresql file=2]`postgresql` dependency under the [hotspot=configurations file=2]`jdbcLib` configuration ensures that Gradle downloads the PostgreSQL library to local project. The [hotspot=copyJDBC file=2]`copyJdbcLibs` task copies the library to the Liberty shared resources directory and ensures that the driver is available for the Liberty server's use each time the project is built. To make the [hotspot file=0]`persistence.xml` file available in the Liberty application loose configuration, set the gradle [hotspot=setResourcesDir file=2]`resourcesDir` output directory for resources to the gradle [hotspot=setResourcesDir file=2]`destinationDirectory` directory for Java classes.
+The [hotspot=postgresql file=2]`postgresql` dependency under the [hotspot=configurations file=2]`jdbcLib` configuration ensures that Gradle downloads the PostgreSQL library to local project. The [hotspot=copyJDBC file=2]`copyJdbcLibs` task copies the library to the Liberty shared resources directory and ensures that the driver is available for the Liberty server's use each time the project is built. To make the [hotspot file=0]`persistence.xml` file available in the Liberty loose application configuration, set the value for the Gradle [hotspot=setResourcesDir file=2]`resourcesDir` output directory location to be the Gradle [hotspot=setResourcesDir file=2]`destinationDirectory` directory.  The Gradle project generates the resources artifacts into the `resourcesDir` directory and the Java class files into the `destinationDirectory` directory.
 
 === Starting PostgreSQL database ===
 
