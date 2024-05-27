@@ -12,7 +12,7 @@
 :page-releasedate: 2023-03-30
 :page-essential: false
 :page-description: Learn how to use Liberty to develop and run Java microservices.
-:page-tags: ['Jakarta EE', 'MicroProfile']
+:page-tags: ['Jakarta EE', 'microProfile']
 :page-related-guides: ['microprofile-openapi', 'cdi-intro', 'microprofile-config', 'jpa-intro', 'microprofile-jwt', 'microprofile-health', 'microprofile-metrics', 'containerize', 'openliberty-operator-intro', 'kubernetes-microprofile-config']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
@@ -26,7 +26,7 @@
 [.hidden]
 NOTE: This repository contains the documentation source. To view this exercise in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-Liberty is a cloud-optimized Java runtime that is fast to start up with a low memory footprint and the dev mode for quick iteration. With Liberty, adopting the latest open cloud-native Java APIs, like MicroProfile and Jakarta EE, is as simple as adding features to your server configuration. The Liberty zero migration architecture lets you focus on what's important and not the APIs changing under you.
+Liberty is a cloud-optimized Java runtime that is fast to start up with a low memory footprint and a https://openliberty.io/docs/latest/development-mode.html[dev mode^], for quick iteration. With Liberty, adopting the latest open cloud-native Java APIs, like MicroProfile and Jakarta EE, is as simple as adding features to your Liberty configuration. The Liberty zero migration architecture lets you focus on what's important and not the APIs changing under you.
 
 == What you'll learn
 
@@ -34,11 +34,11 @@ You will learn how to build a RESTful microservice on Liberty with Jakarta EE an
 
 The microservice that you’ll work with is called `inventory`. The `inventory` microservice persists data into a PostgreSQL database. 
 
-image::inventory.png[Inventory microservice,align="center"]
+image::inventory.png[Inventory microservice,align="center", height=85%, width=85%]
 
 == Additional prerequisites
 
-Before you begin, Podman needs to be installed before you start the *Persisting Data* module. For installation instructions, refer to the https://podman.io/getting-started/installation[official Podman documentation^]. You will build and run the microservices in containers.
+Podman must be installed before you start the **Persisting Data** module. For installation instructions, refer to the https://podman.io/getting-started/installation[official Podman documentation^]. You'll build and run the microservices in containers.
 
 If you are running Mac or Windows, make sure to start your Podman-managed VM before you proceed.
 
@@ -83,7 +83,7 @@ endif::[]
 
 Liberty now offers an easier way to get started with developing your application: the Open Liberty Starter. This tool provides a simple and quick way to get the necessary files to start building an application on Liberty. Through this tool, you can specify your application and project name. You can also choose a build tool from either Maven or Gradle, and pick the Java SE, Jakarta EE, and MicroProfile versions for your application.
 
-In this workshop, the starting project is provided for you or you can use the Open Liberty Starter to create the starting point of the application. Gradle is used as the selected build tool and the application uses of Jakarta EE 10 and MicroProfile 6.
+In this workshop, the Open Liberty Starter is used to create the starting point of the application. Gradle is used as the selected build tool and the application uses of Jakarta EE 10 and MicroProfile 6.
 
 To get started with this tool, see the Getting Started page: https://openliberty.io/start/[https://openliberty.io/start/^]
 
@@ -92,16 +92,23 @@ On that page, enter the following properties in the **Create a starter applicati
 * Under Group specify: `io.openliberty.deepdive`
 * Under Artifact specify: `inventory`
 * Under Build Tool select: `Gradle`
-* Under Java SE Version select: `your version`
+* Under Java SE Version select: `21`
 * Under Java EE/Jakarta EE Version select: `10`
-* Under MicroProfile Version select: `6.0` 
+* Under MicroProfile Version select: `6.1` 
 
 ifndef::cloud-hosted[]
-Then, click `Generate Project`, which downloads the starter project as `inventory.zip` file to the `start` directory of this project. You can replace the provided `inventory.zip` file.
+Then, click `Generate Project`, which downloads the starter project as `inventory.zip` file.
 
-Next, extract the `inventory.zip` file to the `guide-liberty-deepdive-gradle/start/inventory` directory.
+Next, extract the `inventory.zip` file on your system. Move the contents of this extracted `inventory` directory to the `start` directory of this project, which is at the following path: `guide-liberty-deepdive-gradle/start/inventory`.
 
-include::{common-includes}/os-tabs.adoc[]
+Instead of manually downloading and extracting the project, run the following commands in the `start` directory:
+
+[.tab_link.windows_link]
+`*WINDOWS*`
+[.tab_link.mac_link]
+`*MAC*`
+[.tab_link.linux_link]
+`*LINUX*`
 [.tab_content.windows_section]
 --
 Use Powershell for the following commands:
