@@ -31,6 +31,7 @@ cat module-securing/build.gradle
 echo "=== module-openapi/build.gradle ==="
 cat module-openapi/build.gradle
 
+sed -i "s;RUN configure.sh;#RUN configure.sh;g" module-kubernetes/Containerfile
 cat module-kubernetes/Containerfile
 
 sed -i "s;95;999;g" module-health-checks/src/main/java/io/openliberty/deepdive/rest/health/StartupCheck.java

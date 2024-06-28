@@ -11,7 +11,7 @@ mkdir ./start/inventory/src/main/java/io/openliberty/deepdive/rest/health
 cp ./finish/module-health-checks/src/main/java/io/openliberty/deepdive/rest/health/*.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest/health
 cp ./finish/module-metrics/src/main/liberty/config/server.xml ./start/inventory/src/main/liberty/config
 cp ./finish/module-metrics/src/main/java/io/openliberty/deepdive/rest/SystemResource.java ./start/inventory/src/main/java/io/openliberty/deepdive/rest
-cp ./finish/module-kubernetes/Dockerfile ./start/inventory
+cp ./finish/module-kubernetes/Containerfile ./start/inventory
 cp ./finish/module-kubernetes/src/main/liberty/config/server.xml ./start/inventory/src/main/liberty/config/server.xml
 mkdir -p ./start/inventory/src/test/java/it/io/openliberty/deepdive/rest
 mkdir ./start/inventory/src/test/resources
@@ -25,18 +25,18 @@ cp ./finish/module-testcontainers/pom.xml ./start/inventory/pom.xml
 
 cd ./start/inventory || exit
 mvn clean package liberty:create liberty:install-feature liberty:deploy
-docker build -t liberty-deepdive-inventory:1.0-SNAPSHOT .
+podman build -t liberty-deepdive-inventory:1.0-SNAPSHOT .
 cd ../../
 if [[ -e /home/project ]]; then
-    docker tag liberty-deepdive-inventory:1.0-SNAPSHOT "us.icr.io/$SN_ICR_NAMESPACE/liberty-deepdive-inventory:1.0-SNAPSHOT"
-    docker push "us.icr.io/$SN_ICR_NAMESPACE/liberty-deepdive-inventory:1.0-SNAPSHOT"
+    podman tag liberty-deepdive-inventory:1.0-SNAPSHOT "us.icr.io/$SN_ICR_NAMESPACE/liberty-deepdive-inventory:1.0-SNAPSHOT"
+    podman push "us.icr.io/$SN_ICR_NAMESPACE/liberty-deepdive-inventory:1.0-SNAPSHOT"
 fi
 
 ./scripts/stopPostgres.sh
 ./scripts/stopSystem.sh
 
 cd ./finish/postgres || exit
-docker build -t postgres-sample .
+podman build -t postgres-sample .
 
 echo cd start/inventory
 echo Now, you may continue to the "Deploying the microservice to Kubernetes" section.
