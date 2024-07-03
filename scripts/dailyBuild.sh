@@ -13,6 +13,8 @@ echo "Testing daily build image"
 if [ "$JDK_LEVEL" == "11" ]; then
     echo "Test skipped because the guide does not support Java 11."
     exit 0
+else
+    echo "Test Java $JDK_LEVEL."
 fi
 
 export RUNTIMEURL="liberty {\n    install {\n        runtimeUrl='https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER'\n    }\n}\n"
