@@ -19,7 +19,7 @@
     <variable name="postgres/password" defaultValue="adminpwd" />
     <!-- end::variables[] -->
 
-    <httpEndpoint id="defaultHttpEndpoint"
+    <httpEndpoint id="defaultHttpEndpoint" host="*"
                   httpPort="${default.http.port}" 
                   httpsPort="${default.https.port}" />
 
